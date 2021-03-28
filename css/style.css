@@ -1,50 +1,14 @@
-body {
-    /*
-    background-image: url("../imgs/map-workshop.jpg"); 
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    */
+html, body {
     background-color: lightslategrey;
+    height: 99%;
+    width: 99%;
 }
 
-.board {
-    display: grid;
-    border: 1px darkgreen solid;
-    
-    grid-template: repeat(10, 160px) / repeat(10, 160px);
-}
-
-.fill {
+.hero {
     background-image: url("../imgs/Rhord.jpg");
     background-size: 150px;
-    position: relative;
-    height: 150px;
-    width: 150px;
-    top: 358px;
-    left: 818px;
-    cursor: pointer;
-}
-
-.empty {
-    display: inline-block;
-    height: 160px;
-    width: 160px;
-    margin: 10px;
-    border: 3px darkgreen solid;
-    background-color: green;
-}
-
-.hold {
-    border: solid white 2px;
-}
-
-.hovered {
-    background: lightgreen;
-    border-style: dashed;
-}
-
-.invisible {
-    display: none;
+    background-position: initial;
+    position: absolute;
+    height: 100px;
+    width: 100px;
 }
