@@ -1,87 +1,38 @@
-const fill = document.querySelector('.fill');
-const board = document.querySelector('.board');
-const empties = document.querySelectorAll('.empty');
+const hero = document.querySelector('.hero');
 
-//function init() {
-//    console.log('init');
-//    var img = new Image();
-//
-//    img.onload = function(){
-//    var height = img.height;
-//    var width = img.width;
-//
-//    // code here to use the dimensions
-//    }
-//
-//    img.src = url;
-//}
+hero.addEventListener('mousedown', mouseDown);
 
-//init()
+function mouseDown(e) {
+    console.log('down')
+    
+    window.addEventListener('mousemove', mouseMove);
+    window.addEventListener('mouseup', mouseUp);
 
-// Fill Listeners
-fill.addEventListener('dragstart', dragStart);
-fill.addEventListener('dragend', dragEnd);
+    //get X and Y position and mouse click
+    let prevX = e.clientX;
+    let prevY = e.clientY;
 
-// Board Listeners
-board.addEventListener('dragover', dragOverBoard);
-board.addEventListener('drop', dragDropBoard);
+    function mouseMove(e) {
+        console.log('moving..')
+        //update X and Y position of object relative with mouse click
+        let newX = prevX - e.clientX;
+        let newY = prevY - e.clientY;
 
-//Loop through empties and call drag events
-//for(const empty of empties) {
-//    empty.addEventListener('dragover', dragOver);
-//    empty.addEventListener('dragenter', dragEnter);
-//    empty.addEventListener('dragleave', dragLeave);
-//    empty.addEventListener('drop', dragDrop);
-//}
+        //get the current properties from Hero (position)
+        const heroRect = hero.getBoundingClientRect();
 
+        //update the position of Hero
+        hero.style.left = heroRect.left - newX + "px";
+        hero.style.top = heroRect.top - newY + "px";
 
-//Drag Functions
-function dragStart() {
-    console.log('start');
-    this.className += ' hold';
-    setTimeout(() =>  this.className = 'invisible')
-}
+        //update previous X and Y
+        prevX = e.clientX;
+        prevY = e.clientY;
+    }
 
-function dragEnd() {
-    console.log('end');
-    this.className = 'fill';
-}
-
-function dragOver(e) {
-    console.log('over');
-    e.preventDefault();
-}
-
-
-function dragEnter(e) {
-    console.log('enter');
-    e.preventDefault();
-    this.className += ' hovered';
-}
-
-function dragLeave() {
-    console.log('leave');
-    this.className = 'empty';
-}
-
-function dragDrop() {
-    console.log('drop');
-    this.className = 'empty';
-    this.append(fill);
-}
-
-
-
-function dragOverBoard(e) {
-    console.log('over Board');
-    e.preventDefault();
-}
-
-function dragDropBoard(e) {
-    console.log('drop Board');
-    console.log(e.clientY);
-    console.log(e.clientX);
-    console.log(fill.style.top);
-    this.style.top = e.ClientX + 'px;';
-    this.style.left = e.ClientY + 'px;';
+    function mouseUp() {
+        console.log('up')
+        window.removeEventListener('mousemove', mouseMove);
+        window.removeEventListener('mouseup', mouseUp);
+    }
 }
