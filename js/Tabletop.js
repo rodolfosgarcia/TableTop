@@ -10,7 +10,11 @@ addMonsterButton.addEventListener('mouseover', overAddMonster);
 
 
 
-addHero();
+for (let hero of heroes) {
+    hero.addEventListener('mousedown', mouseDown);
+    hero.addEventListener('mouseover', mouseOver);
+    console.log(heroes.length)
+}
 
 
 
@@ -54,7 +58,7 @@ function mouseOver() {
 
 function addHero() {
     newDiv = document.createElement('div');
-    newDiv.className = 'hero';
+    newDiv.className = 'hero Generic';
     newDiv.style.top = '500px';
     newDiv.style.left = '100px';
     document.querySelector('.board').append(newDiv);

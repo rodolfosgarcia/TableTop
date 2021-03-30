@@ -4,20 +4,55 @@ html, body {
 }
 
 .board {
-    background-color: lightslategrey;
+    background-image: url("../imgs/grass.jpg");
     height: inherit;
     width: inherit;
 }
 
 .hero {
-    background-image: url("../imgs/Rhord.png");
-    background-size: 90px;
+    background-size: 70px;
     background-position: initial;
-    border-radius: 45px;
+    border-radius: 35px;
     position: absolute;
-    height: 90px;
-    width: 90px;
+    height: 70px;
+    width: 70px;
     align-content: center;
+}
+
+.Generic {
+    background-image: url("../imgs/Defaulthero.png");
+    left: 10px;
+    top: 900px;
+}
+
+.Rhord {
+    background-image: url("../imgs/Rhord.png");
+    left: 650px;
+    top: 700px;
+}
+
+.Iroh {
+    background-image: url("../imgs/Iroh.png");
+    left: 775px;
+    top: 600px;
+}
+
+.Leroy {
+    background-image: url("../imgs/Leeroy.jpg");
+    left: 900px;
+    top: 500px;
+}
+
+.Cernunnos {
+    background-image: url("../imgs/Cernunnos.png");
+    left: 1025px;
+    top: 600px;
+}
+
+.Fhrost {
+    background-image: url("../imgs/Fhrost.png");
+    left: 1150px;
+    top: 700px;
 }
 
 /*
