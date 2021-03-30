@@ -1,14 +1,287 @@
 html, body {
-    background-color: lightslategrey;
     height: 99%;
     width: 99%;
 }
 
-.hero {
-    background-image: url("../imgs/Rhord.jpg");
-    background-size: 150px;
-    background-position: initial;
-    position: absolute;
-    height: 100px;
-    width: 100px;
+.board {
+    background-color: lightslategrey;
+    height: inherit;
+    width: inherit;
 }
+
+.hero {
+    background-image: url("../imgs/Rhord.png");
+    background-size: 90px;
+    background-position: initial;
+    border-radius: 45px;
+    position: absolute;
+    height: 90px;
+    width: 90px;
+    align-content: center;
+}
+
+/*
+.addHero {
+    background-color: green;
+    font-size: 20px;
+    border-radius: 10px;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    vertical-align: top;
+    align-content: flex-end;
+}
+
+.addMonster {
+    background-color: red;
+    font-size: 20px;
+    border-radius: 10px;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    vertical-align: middle;
+}
+*/
+
+.removeHero {
+    height: 8px;
+    width: 8px;
+}
+
+
+
+
+.addHero {
+    top: 20px;
+    left: 20px;
+    background-color: green;
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    width: 22px;
+    height: 22px;
+    border: 2px solid;
+    transform: scale(var(--ggs,1.7));
+    border-radius: 22px;
+    transition: 0.5s;
+}
+
+.addHero::after,
+.addHero::before {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    width: 10px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 5px;
+    top: 8px;
+    left: 4px
+}
+
+.addHero::after {
+    width: 2px;
+    height: 10px;
+    top: 4px;
+    left: 8px
+}
+
+
+.addHero:hover{
+    background: limegreen;
+    box-shadow: 0 0 0 2px gray,
+                0 0 0 4px  limegreen;
+}
+
+
+.addMonster {
+    top: 50px;
+    left: 20px;
+    background-color: rgb(247, 72, 72);
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    width: 22px;
+    height: 22px;
+    border: 2px solid;
+    transform: scale(var(--ggs,1.7));
+    border-radius: 22px;
+    transition: 0.5s;
+}
+
+.addMonster::after,
+.addMonster::before {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    width: 10px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 5px;
+    top: 8px;
+    left: 4px;
+}
+
+.addMonster::after {
+    width: 2px;
+    height: 10px;
+    top: 4px;
+    left: 8px;
+}
+
+.addMonster:hover{
+    background: red;
+    box-shadow: 0 0 0 2px gray,
+                0 0 0 4px  red;
+}
+
+
+.textHero {
+    background: white;
+    position: absolute;
+    display: flex;
+    margin: 0px;
+    padding: 0px;
+    left: 30px;
+    top: 0px;
+    width: 60px;
+    height: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 9px;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+    transform: translateY(-1%) translateX(-100px);
+}
+
+.addHero:hover .textHero {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(-1%) translateX(0px);
+}
+
+.textHero::before {
+    content: '';
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    background: white;
+    left: -2px;
+    transform: rotate(45deg);
+}
+
+.textMon {
+    background: white;
+    position: absolute;
+    display: flex;
+    margin: 0px;
+    padding: 0px;
+    left: 30px;
+    top: 0px;
+    width: 60px;
+    height: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 9px;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+    transform: translateY(-1%) translateX(-100px);
+}
+
+.addMonster:hover .textMon {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(-1%) translateX(0px);
+}
+
+.textMon::before {
+    content: '';
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    background: white;
+    left: -2px;
+    transform: rotate(45deg);
+}
+
+
+
+
+
+.gg-crown {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs,1));
+    width: 19px;
+    height: 12px;
+    border: 2px solid;
+    border-top-color: transparent;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    padding-top: 4px
+   }
+   
+   .gg-crown::after,
+   .gg-crown::before {
+    content: "";
+    display: block;
+    position: absolute;
+    box-sizing: border-box;
+    width: 8px;
+    height: 8px;
+    border-bottom: 2px solid;
+    border-left: 2px solid;
+    transform: rotate(-45deg);
+    top: -4px
+   }
+   
+   .gg-crown::before {
+    border-top-left-radius: 2px;
+    left: -1px
+   }
+   
+   .gg-crown::after {
+    border-bottom-right-radius: 2px;
+    right: -1px
+   } 
+
+
+
+   .gg-close {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs,1));
+    width: 22px;
+    height: 22px;
+    border: 2px solid transparent;
+    border-radius: 40px
+   }
+   
+   .gg-close::after,
+   .gg-close::before {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    width: 16px;
+    height: 2px;
+    background: currentColor;
+    transform: rotate(45deg);
+    border-radius: 5px;
+    top: 8px;
+    left: 1px
+   }
+   
+   .gg-close::after {
+    transform: rotate(-45deg)
+   } 
