@@ -5,7 +5,7 @@ html, body {
 }
 
 .board {
-    background-image: url("../imgs/grama.jpg");
+    background-image: url("../img/grama.jpg");
     height: inherit;
     width: inherit;
     box-sizing: border-box;
@@ -32,39 +32,39 @@ html, body {
 }
 
 .Generic {
-    background-image: url("../imgs/Defaulthero.png");
+    background-image: url("../img/Defaulthero.png");
 }
 
 .Generic2 {
-    background-image: url("../imgs/Defaultvilain.png");
+    background-image: url("../img/Defaultvilain.png");
 }
 
 .Rhord {
-    background-image: url("../imgs/Rhord.png");
+    background-image: url("../img/Rhord.png");
     left: 650px;
     top: 700px;
 }
 
 .Iroh {
-    background-image: url("../imgs/Iroh.png");
+    background-image: url("../img/Iroh.png");
     left: 775px;
     top: 600px;
 }
 
 .Leroy {
-    background-image: url("../imgs/Leeroy.png");
+    background-image: url("../img/Leeroy.png");
     left: 900px;
     top: 500px;
 }
 
 .Cernunnos {
-    background-image: url("../imgs/Cernunnos.png");
+    background-image: url("../img/Cernunnos.png");
     left: 1025px;
     top: 600px;
 }
 
 .Fhrost {
-    background-image: url("../imgs/Fhrost.png");
+    background-image: url("../img/Fhrost.png");
     left: 1150px;
     top: 700px;
 }
