@@ -1,12 +1,14 @@
 html, body {
     height: 99%;
     width: 99%;
+    font: 18px Arial;  
 }
 
 .board {
-    background-image: url("../imgs/grass.jpg");
+    background-image: url("../imgs/grama.jpg");
     height: inherit;
     width: inherit;
+    box-sizing: border-box;
 }
 
 .hero {
@@ -19,10 +21,22 @@ html, body {
     align-content: center;
 }
 
+.monster {
+    background-size: 70px;
+    background-position: initial;
+    border-radius: 35px;
+    position: absolute;
+    height: 70px;
+    width: 70px;
+    align-content: center;
+}
+
 .Generic {
     background-image: url("../imgs/Defaulthero.png");
-    left: 10px;
-    top: 900px;
+}
+
+.Generic2 {
+    background-image: url("../imgs/Defaultvilain.png");
 }
 
 .Rhord {
@@ -55,42 +69,11 @@ html, body {
     top: 700px;
 }
 
-/*
-.addHero {
-    background-color: green;
-    font-size: 20px;
-    border-radius: 10px;
-    height: 30px;
-    width: 30px;
-    text-align: center;
-    vertical-align: top;
-    align-content: flex-end;
-}
-
-.addMonster {
-    background-color: red;
-    font-size: 20px;
-    border-radius: 10px;
-    height: 30px;
-    width: 30px;
-    text-align: center;
-    vertical-align: middle;
-}
-*/
-
-.removeHero {
-    height: 8px;
-    width: 8px;
-}
-
-
-
 
 .addHero {
     top: 20px;
     left: 20px;
     background-color: green;
-    box-sizing: border-box;
     position: relative;
     display: block;
     width: 22px;
@@ -105,7 +88,6 @@ html, body {
 .addHero::before {
     content: "";
     display: block;
-    box-sizing: border-box;
     position: absolute;
     width: 10px;
     height: 2px;
@@ -183,7 +165,6 @@ html, body {
     top: 0px;
     width: 60px;
     height: 20px;
-    font-family: 'Poppins', sans-serif;
     font-size: 9px;
     justify-content: center;
     align-items: center;
@@ -220,7 +201,6 @@ html, body {
     top: 0px;
     width: 60px;
     height: 20px;
-    font-family: 'Poppins', sans-serif;
     font-size: 9px;
     justify-content: center;
     align-items: center;
@@ -246,77 +226,3 @@ html, body {
     left: -2px;
     transform: rotate(45deg);
 }
-
-
-
-
-
-.gg-crown {
-    box-sizing: border-box;
-    position: relative;
-    display: block;
-    transform: scale(var(--ggs,1));
-    width: 19px;
-    height: 12px;
-    border: 2px solid;
-    border-top-color: transparent;
-    border-bottom-right-radius: 3px;
-    border-bottom-left-radius: 3px;
-    padding-top: 4px
-   }
-   
-   .gg-crown::after,
-   .gg-crown::before {
-    content: "";
-    display: block;
-    position: absolute;
-    box-sizing: border-box;
-    width: 8px;
-    height: 8px;
-    border-bottom: 2px solid;
-    border-left: 2px solid;
-    transform: rotate(-45deg);
-    top: -4px
-   }
-   
-   .gg-crown::before {
-    border-top-left-radius: 2px;
-    left: -1px
-   }
-   
-   .gg-crown::after {
-    border-bottom-right-radius: 2px;
-    right: -1px
-   } 
-
-
-
-   .gg-close {
-    box-sizing: border-box;
-    position: relative;
-    display: block;
-    transform: scale(var(--ggs,1));
-    width: 22px;
-    height: 22px;
-    border: 2px solid transparent;
-    border-radius: 40px
-   }
-   
-   .gg-close::after,
-   .gg-close::before {
-    content: "";
-    display: block;
-    box-sizing: border-box;
-    position: absolute;
-    width: 16px;
-    height: 2px;
-    background: currentColor;
-    transform: rotate(45deg);
-    border-radius: 5px;
-    top: 8px;
-    left: 1px
-   }
-   
-   .gg-close::after {
-    transform: rotate(-45deg)
-   } 

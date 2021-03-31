@@ -1,21 +1,18 @@
 var heroes = document.querySelectorAll('.hero');
+var monsters = document.querySelectorAll('.monster');
 const addHeroButton = document.querySelector('.addHero');
 const addMonsterButton = document.querySelector('.addMonster');
 
 addHeroButton.addEventListener('mousedown', addHero);
-addHeroButton.addEventListener('mouseover', overAddHero);
 addMonsterButton.addEventListener('mousedown', addMonster);
-addMonsterButton.addEventListener('mouseover', overAddMonster);
-
-
-
 
 for (let hero of heroes) {
     hero.addEventListener('mousedown', mouseDown);
-    hero.addEventListener('mouseover', mouseOver);
-    console.log(heroes.length)
 }
 
+for (let monster of monsters) {
+    monster.addEventListener('mousedown', mouseDown);
+}
 
 
 
@@ -52,32 +49,26 @@ function mouseDown(e) {
     }
 }
 
-function mouseOver() {
-    console.log('over');
-}
-
 function addHero() {
-    newDiv = document.createElement('div');
+    let newDiv = document.createElement('div');
     newDiv.className = 'hero Generic';
-    newDiv.style.top = '500px';
-    newDiv.style.left = '100px';
+    newDiv.style.top = '700px';
+    newDiv.style.left = '50px';
     document.querySelector('.board').append(newDiv);
     heroes = document.querySelectorAll('.hero');
     for (let hero of heroes) {
         hero.addEventListener('mousedown', mouseDown);
-        hero.addEventListener('mouseover', mouseOver);
-        console.log(heroes.length)
     }
 }
 
 function addMonster() {
-    console.log('added monster');
-}
-
-function overAddHero() {
-    console.log('over add hero');
-}
-
-function overAddMonster() {
-    console.log('over add mon');
+    let newDiv = document.createElement('div');
+    newDiv.className = 'monster Generic2';
+    newDiv.style.top = '200px';
+    newDiv.style.left = '50px';
+    document.querySelector('.board').append(newDiv);
+    monsters = document.querySelectorAll('.monster');
+    for (let monster of monsters) {
+        monster.addEventListener('mousedown', mouseDown);
+    }
 }
