@@ -16,10 +16,12 @@ var heroIdcounter = 0;
     
     for (let hero of heroes) {
         hero.addEventListener('mousedown', (e) => sock.emit('mouseDown', { ele: hero.id, oriX: e.clientX, oriY: e.clientY }));
+        hero.addEventListener('click', (e) => sock.emit('leftClick', {ele: hero.id, isCtrlPress: e.ctrlKey}));
     }
-
+    
     for (let monster of monsters) {
         monster.addEventListener('mousedown', (e) => sock.emit('mouseDown', { ele: monster.id, oriX: e.clientX, oriY: e.clientY }));
+        monster.addEventListener('click', (e) => sock.emit('leftClick', {ele: monster.id, isCtrlPress: e.ctrlKey}));
     }
     
     window.addEventListener('mousemove', (e) => {
@@ -41,14 +43,12 @@ var heroIdcounter = 0;
     sock.on('mouseMove', ({ele, oriX, oriY, destX, destY}) => mouseMove({ele, oriX, oriY, destX, destY}));
     sock.on('addHero', () => addHero());
     sock.on('addMonster', () => addMonster());
+    sock.on('leftClick', ({ele , isCtrlPress}) => leftClick({ele , isCtrlPress}));
     sock.on('mouseUp', () => {
-        console.log('UPPPPPPP local');
         isMoving = false;
-        //sock.off('mouseMove');
     });
 
     function turnOffMove() {
-        console.log('turn off mouse UP');
         sock.emit('mouseUp');
     }
 
@@ -64,9 +64,8 @@ var heroIdcounter = 0;
         newDiv.style.left = '50px';
         document.querySelector('.board').append(newDiv);
         heroes = document.querySelectorAll('.hero');
-        for (let hero of heroes) {
-            hero.addEventListener('mousedown', (e) => sock.emit('mouseDown', { ele: hero.id, oriX: e.clientX, oriY: e.clientY }));
-        }
+        newDiv.addEventListener('mousedown', (e) => sock.emit('mouseDown', { ele: newDiv.id, oriX: e.clientX, oriY: e.clientY }));
+        newDiv.addEventListener('click', (e) => sock.emit('leftClick', {ele: newDiv.id, isCtrlPress: e.ctrlKey}));
     }
     
     function addMonster() {
@@ -78,8 +77,27 @@ var heroIdcounter = 0;
         newDiv.style.left = '50px';
         document.querySelector('.board').append(newDiv);
         monsters = document.querySelectorAll('.monster');
-        for (let monster of monsters) {
-            monster.addEventListener('mousedown', (e) => sock.emit('mouseDown', { ele: monster.id, oriX: e.clientX, oriY: e.clientY }));
+        newDiv.addEventListener('mousedown', (e) => sock.emit('mouseDown', { ele: newDiv.id, oriX: e.clientX, oriY: e.clientY }));
+        newDiv.addEventListener('click', (e) => sock.emit('leftClick', {ele: newDiv.id, isCtrlPress: e.ctrlKey}));
+    }
+
+    function leftClick({ele , isCtrlPress}) {
+        if (isCtrlPress) {
+            let token = document.getElementById(ele);
+            if (token.hasChildNodes()) {
+                token.removeChild(document.getElementById('dead'+ ele + '1'));
+                token.removeChild(document.getElementById('dead'+ ele + '2'));
+            }
+            else {
+                let newDiv1 = document.createElement('div');
+                let newDiv2 = document.createElement('div');
+                newDiv1.id = 'dead'+ ele + '1';
+                newDiv2.id = 'dead'+ ele + '2';
+                newDiv1.className = 'dead-line-1';
+                newDiv2.className = 'dead-line-2';
+                document.getElementById(ele).append(newDiv1);
+                document.getElementById(ele).append(newDiv2);
+            }
         }
     }
     
@@ -90,28 +108,21 @@ var heroIdcounter = 0;
 
 function mouseDown({ele, oriX, oriY}) {
     isMoving = true;
-    console.log({ele, oriX, oriY});
     eleID = ele;
     prevX = oriX;
     prevY = oriY;
-    //sock.on('mouseMove', ({ele, oriX, oriY, destX, destY}) => mouseMove({ele, oriX, oriY, destX, destY}));
 }
 
 function mouseMove({ele, oriX, oriY, destX, destY}) {
-    //update X and Y position of object relative with mouse click
-    console.log({ele, oriX, oriY, destX, destY});
     let subX = oriX - destX;
     let subY = oriY - destY;
     
-    //get the current properties from Hero (position)
     let hero_action = document.getElementById(ele);
     let heroRect = hero_action.getBoundingClientRect();
 
-    //update the position of Hero
     hero_action.style.left = heroRect.left - subX + "px";
     hero_action.style.top = heroRect.top - subY + "px";
 
-    //update origin/previous X and Y
     prevX = destX;
     prevY = destY;
 }
