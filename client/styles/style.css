@@ -39,31 +39,31 @@ html, body {
     background-image: url("../img/Defaultvilain.png");
 }
 
-.Rhord {
+#Rhord {
     background-image: url("../img/Rhord.png");
     left: 650px;
     top: 700px;
 }
 
-.Iroh {
+#Iroh {
     background-image: url("../img/Iroh.png");
     left: 775px;
     top: 600px;
 }
 
-.Leroy {
+#Leroy {
     background-image: url("../img/Leeroy.png");
     left: 900px;
     top: 500px;
 }
 
-.Cernunnos {
+#Cernunnos {
     background-image: url("../img/Cernunnos.png");
     left: 1025px;
     top: 600px;
 }
 
-.Fhrost {
+#Fhrost {
     background-image: url("../img/Fhrost.png");
     left: 1150px;
     top: 700px;
