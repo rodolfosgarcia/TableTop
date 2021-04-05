@@ -16,10 +16,9 @@ io.on('connection', (sock) => {
     sock.on('mouseDown', ({ ele, oriX, oriY}) => io.emit('mouseDown', {ele, oriX, oriY}));
     //sock.on('mouseDown', ({ ele, oriX, oriY}) => console.log({ele, oriX, oriY}));
     sock.on('mouseMove', ({ele:ele, oriX:oriX, oriY:oriY, destX:destX, destY:destY}) => {
-        console.log(ele);
-        if (ele != null) {
-            io.emit('mouseMove', {ele, oriX, oriY, destX, destY});
-        }
+        //console.log(ele);
+        //if (ele != null) io.emit('mouseMove', {ele, oriX, oriY, destX, destY});
+        io.emit('mouseMove', {ele, oriX, oriY, destX, destY});
     });
     //sock.on('mouseMove', ({ele, oriX, oriY, destX, destY}) => console.log({ele, oriX, oriY, destX, destY}));
     sock.on('mouseUp', () => io.emit('mouseUp'));

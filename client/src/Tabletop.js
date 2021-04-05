@@ -3,6 +3,8 @@ var monsters = document.querySelectorAll('.monster');
 const addHeroButton = document.querySelector('.addHero');
 const addMonsterButton = document.querySelector('.addMonster');
 var isMoving = false;
+var monIdcounter = 0;
+var heroIdcounter = 0;
 
 (()=> {
 
@@ -17,7 +19,7 @@ var isMoving = false;
     }
 
     for (let monster of monsters) {
-        monster.addEventListener('mousedown', () => sock.emit('mouseDown', { ele: monster.id, oriX: e.clientX, oriY: e.clientY }));
+        monster.addEventListener('mousedown', (e) => sock.emit('mouseDown', { ele: monster.id, oriX: e.clientX, oriY: e.clientY }));
     }
     
     window.addEventListener('mousemove', (e) => {
@@ -28,7 +30,7 @@ var isMoving = false;
         }
     });
 
-    window.addEventListener('mouseup', turnOffMove());
+    window.addEventListener('mouseup', turnOffMove);
 
 
 
@@ -42,12 +44,43 @@ var isMoving = false;
     sock.on('mouseUp', () => {
         console.log('UPPPPPPP local');
         isMoving = false;
+        //sock.off('mouseMove');
     });
 
     function turnOffMove() {
         console.log('turn off mouse UP');
         sock.emit('mouseUp');
-        sock.off('mouseMove');
+    }
+
+
+
+
+    function addHero() {
+        let newDiv = document.createElement('div');
+        newDiv.className = 'hero Generic';
+        heroIdcounter += 1;
+        newDiv.id = 'newHero' + heroIdcounter;
+        newDiv.style.top = '700px';
+        newDiv.style.left = '50px';
+        document.querySelector('.board').append(newDiv);
+        heroes = document.querySelectorAll('.hero');
+        for (let hero of heroes) {
+            hero.addEventListener('mousedown', (e) => sock.emit('mouseDown', { ele: hero.id, oriX: e.clientX, oriY: e.clientY }));
+        }
+    }
+    
+    function addMonster() {
+        let newDiv = document.createElement('div');
+        newDiv.className = 'monster Generic2';
+        monIdcounter += 1;
+        newDiv.id = 'newMonster' + monIdcounter;
+        newDiv.style.top = '200px';
+        newDiv.style.left = '50px';
+        document.querySelector('.board').append(newDiv);
+        monsters = document.querySelectorAll('.monster');
+        for (let monster of monsters) {
+            monster.addEventListener('mousedown', (e) => sock.emit('mouseDown', { ele: monster.id, oriX: e.clientX, oriY: e.clientY }));
+        }
     }
     
 })();
@@ -61,6 +94,7 @@ function mouseDown({ele, oriX, oriY}) {
     eleID = ele;
     prevX = oriX;
     prevY = oriY;
+    //sock.on('mouseMove', ({ele, oriX, oriY, destX, destY}) => mouseMove({ele, oriX, oriY, destX, destY}));
 }
 
 function mouseMove({ele, oriX, oriY, destX, destY}) {
@@ -82,28 +116,3 @@ function mouseMove({ele, oriX, oriY, destX, destY}) {
     prevY = destY;
 }
 
-function addHero() {
-    let newDiv = document.createElement('div');
-    newDiv.className = 'hero Generic';
-    newDiv.style.top = '700px';
-    newDiv.style.left = '50px';
-    document.querySelector('.board').append(newDiv);
-    heroes = document.querySelectorAll('.hero');
-    for (let hero of heroes) {
-        //hero.addEventListener('mousedown', mouseDown);
-        hero.addEventListener('mousedown', () => sock.emit('mouseDown'));
-    }
-}
-
-function addMonster() {
-    let newDiv = document.createElement('div');
-    newDiv.className = 'monster Generic2';
-    newDiv.style.top = '200px';
-    newDiv.style.left = '50px';
-    document.querySelector('.board').append(newDiv);
-    monsters = document.querySelectorAll('.monster');
-    for (let monster of monsters) {
-        //monster.addEventListener('mousedown', mouseDown);
-        monster.addEventListener('mousedown', () => sock.emit('mouseDown'));
-    }
-}
