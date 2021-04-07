@@ -9,6 +9,9 @@ var heroIdcounter = 0;
 (()=> {
 
     const sock = io();
+    var eleID = '';
+    var prevX = '';
+    var prevY = '';
 
     addHeroButton.addEventListener('mousedown', () => sock.emit('addHero'));
     
@@ -52,6 +55,8 @@ var heroIdcounter = 0;
         sock.emit('mouseUp');
     }
 
+
+    
 
 
 
@@ -100,30 +105,27 @@ var heroIdcounter = 0;
             }
         }
     }
+
+    function mouseDown({ele, oriX, oriY}) {
+        isMoving = true;
+        eleID = ele;
+        prevX = oriX;
+        prevY = oriY;
+    }
+    
+    function mouseMove({ele, oriX, oriY, destX, destY}) {
+        let subX = oriX - destX;
+        let subY = oriY - destY;
+        
+        let hero_action = document.getElementById(ele);
+        let heroRect = hero_action.getBoundingClientRect();
+    
+        hero_action.style.left = heroRect.left - subX + "px";
+        hero_action.style.top = heroRect.top - subY + "px";
+    
+        prevX = destX;
+        prevY = destY;
+    }
     
 })();
-
-
-
-
-function mouseDown({ele, oriX, oriY}) {
-    isMoving = true;
-    eleID = ele;
-    prevX = oriX;
-    prevY = oriY;
-}
-
-function mouseMove({ele, oriX, oriY, destX, destY}) {
-    let subX = oriX - destX;
-    let subY = oriY - destY;
-    
-    let hero_action = document.getElementById(ele);
-    let heroRect = hero_action.getBoundingClientRect();
-
-    hero_action.style.left = heroRect.left - subX + "px";
-    hero_action.style.top = heroRect.top - subY + "px";
-
-    prevX = destX;
-    prevY = destY;
-}
 
