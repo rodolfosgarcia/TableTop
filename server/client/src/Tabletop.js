@@ -98,7 +98,7 @@ var isMoving = false;
     });
 
     window.addEventListener('mouseup', (e) => {
-        console.log(eleID);
+        //console.log(eleID);
         if (eleID != '') {
             console.log('upp');
             let hero_action = document.getElementById(eleID);
