@@ -4,21 +4,22 @@ const addHeroButton = document.querySelector('.addHero');
 const addMonsterButton = document.querySelector('.addMonster');
 var isMoving = false;
 
+var eleID = '';
+var prevX = '';
+var prevY = '';
+
+var heroIdcounter = 0;
+var newHeroTopDefault = '700';
+var newHeroLeftDefault = '50';
+
+var monIdcounter = 0;
+var newMonsterTopDefault = '200';
+var newMonsterLeftDefault = '50';
+
 (()=> {
     
     const sock = io();
-    var eleID = '';
-    var prevX = '';
-    var prevY = '';
-    
-    var heroIdcounter = 0;
-    var newHeroTopDefault = '700';
-    var newHeroLeftDefault = '50';
-    
-    var monIdcounter = 0;
-    var newMonsterTopDefault = '200';
-    var newMonsterLeftDefault = '50';
-    
+   
     //create board
     sock.on('board', (board) => resetBoard(board));
 
